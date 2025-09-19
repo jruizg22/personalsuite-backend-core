@@ -24,6 +24,8 @@ Flag indicating if the SQLAlchemy engine should log all SQL statements.
 - False: SQL statements will not be printed.
 
 This is controlled by the 'ENGINE_ECHO' environment variable.
+
+Defaults to False if the environment variable is not set.
 """
 
 # Create the SQLAlchemy engine using the database URL and echo flag.

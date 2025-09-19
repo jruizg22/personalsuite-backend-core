@@ -32,11 +32,11 @@ async def root() -> dict:
     return {"message": "Hello World"}
 
 # Retrieve Uvicorn host configuration from environment variables.
-UVICORN_HOST: str = os.getenv("UVICORN_HOST", "127.0.0.1")
+UVICORN_HOST: str = os.getenv("UVICORN_HOST", "0.0.0.0")
 """
 The host address for the Uvicorn server.
 
-Defaults to '127.0.0.1' if the environment variable is not set.
+Defaults to '0.0.0.0' if the environment variable is not set, allowing access from all interfaces.
 """
 
 # Retrieve and validate Uvicorn port configuration.
