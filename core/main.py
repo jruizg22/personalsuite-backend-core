@@ -1,16 +1,22 @@
 import os
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from db_config import engine
 from module_manager import ModuleManager
+from security import get_api_key
 
 # Create the main FastAPI application instance.
-app: FastAPI = FastAPI()
-"""
-The main FastAPI application instance.
-
-Used to register routes and middleware and to serve the application.
-"""
+#
+# This instance will serve as the central point for all API routes and configuration.
+# The `title` parameter sets the API title shown in the documentation (/docs or /redoc).
+# The `dependencies` parameter applies a global dependency: in this case, `get_api_key`.
+#
+# By including `Depends(get_api_key)` here, every endpoint in the application will require
+# a valid API key, effectively securing the API and restricting access to authorized clients only.
+app: FastAPI = FastAPI(
+    title="Personal Suite",
+    dependencies=[Depends(get_api_key)]
+)
 
 # Initialize the ModuleManager with the FastAPI app and database engine.
 manager: ModuleManager = ModuleManager(app, engine)
