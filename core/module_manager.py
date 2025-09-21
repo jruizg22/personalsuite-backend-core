@@ -60,3 +60,6 @@ class ModuleManager:
         """
         for module in self.modules:
             module.register()
+
+    def list_loaded(self):
+        return [m.name for m in self.modules]

@@ -37,6 +37,10 @@ async def root() -> dict:
     """
     return {"message": "Hello World"}
 
+@app.get("/modules")
+def module_list() -> list[str]:
+    return manager.list_loaded()
+
 # Retrieve Uvicorn host configuration from environment variables.
 UVICORN_HOST: str = os.getenv("UVICORN_HOST", "0.0.0.0")
 """
