@@ -70,9 +70,10 @@ Este repositorio también sirve como proyecto de aprendizaje y portafolio, donde
 ## 1️⃣ Getting Started / Comenzando
 
 ### Environment Setup / Configuración del Entorno
-Currently, these are the environment variables used in the project, although only `DATABASE_URL` is required to run the application:
+Currently, these are the environment variables used in the project:
 
-- `DATABASE_URL`: PostgreSQL connection string (e.g., `postgresql+psycopg2://user:password@localhost/dbname`).
+- `DATABASE_URL`: PostgreSQL connection string (e.g., `postgresql+psycopg2://user:password@localhost/dbname`). (REQUIRED)
+- `PERSONALSUITE_API_KEY`: API Key to protect the endpoints. (REQUIRED)
 - `UVICORN_HOST`: Host for Uvicorn (default: `0.0.0.0`), which allows access from all network interfaces.
 - `UVICORN_PORT`: Port for Uvicorn (default: `8000`).
 - `UVICORN_RELOAD`: Whether to enable auto-reload (default: `true` for development).
@@ -81,9 +82,10 @@ Currently, these are the environment variables used in the project, although onl
 <details>
 <summary>🇪🇸 Español</summary>
 
-Actualmente, estas son las variables de entorno utilizadas en el proyecto, aunque solo `DATABASE_URL` es obligatoria para ejecutar la aplicación:
+Actualmente, estas son las variables de entorno utilizadas en el proyecto.
 
-- `DATABASE_URL`: Cadena de conexión a PostgreSQL (ej.: `postgresql+psycopg2://usuario:contraseña@localhost/nombre_bd`).
+- `DATABASE_URL`: Cadena de conexión a PostgreSQL (ej.: `postgresql+psycopg2://usuario:contraseña@localhost/nombre_bd`). (NECESARIO)
+- `PERSONALSUITE_API_KEY`: API Key para proteger los endpoints. (NECESARIO)
 - `UVICORN_HOST`: Host para Uvicorn (por defecto `0.0.0.0`), permite acceso desde todas las interfaces de red.
 - `UVICORN_PORT`: Puerto para Uvicorn (por defecto `8000`).
 - `UVICORN_RELOAD`: Activar recarga automática (por defecto `true` para desarrollo).
