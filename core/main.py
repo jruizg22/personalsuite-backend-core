@@ -1,9 +1,11 @@
 import os
 
 from fastapi import FastAPI, Depends
+from fastapi.middleware.cors import CORSMiddleware
 from db_config import engine
 from module_manager import ModuleManager
 from security import get_api_key
+from allowed_origins import origins
 
 # Create the main FastAPI application instance.
 #
@@ -16,6 +18,39 @@ from security import get_api_key
 app: FastAPI = FastAPI(
     title="Personal Suite",
     dependencies=[Depends(get_api_key)]
+)
+
+# Configure Cross-Origin Resource Sharing (CORS) middleware.
+#
+# This middleware enables the FastAPI application to handle requests from different origins,
+# which is essential when the frontend (e.g., a React or Vue app) is hosted on a different domain
+# or port than the backend API.
+#
+# The `origins` list defines the allowed origins (domains) that can make requests to this API.
+# - During development, it can be set to ["*"] to allow all origins.
+# - In production, it is strongly recommended to replace "*" with an explicit list of trusted domains,
+#   for example:
+#       origins = [
+#           "https://app.personalsuite.com",
+#           "https://admin.personalsuite.com"
+#       ]
+#
+# The parameters control the CORS behavior:
+# - `allow_origins`: Specifies which domains are permitted to access the API.
+# - `allow_credentials`: Enables cookies, authorization headers, and other credentials.
+# - `allow_methods`: Specifies which HTTP methods are allowed (e.g., GET, POST, PUT, DELETE).
+#   Setting ["*"] allows all methods.
+# - `allow_headers`: Defines which headers can be included in the request.
+#   Using ["*"] allows any header, including custom ones like "X-API-Key".
+#
+# This configuration ensures that browser-based clients (e.g., frontend apps)
+# can interact securely and seamlessly with the API.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Initialize the ModuleManager with the FastAPI app and database engine.
